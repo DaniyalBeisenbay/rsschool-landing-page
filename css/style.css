@@ -1451,3 +1451,84 @@ body.dark-theme .logo img.logo-dark {
   display: block;
 }
 
+/* =========================
+   BURGER MENU
+   ========================= */
+
+@media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 100px;
+    left: 0;
+
+    width: 100%;
+    height: calc(100vh - 100px);
+
+    display: flex;
+    justify-content: center;
+
+    padding-top: 60px;
+
+    background-color: #e1d4c9;
+
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+
+    z-index: 100;
+  }
+
+  .nav.active {
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .burger {
+    position: relative;
+    z-index: 101;
+  }
+
+  .burger span {
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .burger.active span:first-child {
+    transform: translateY(3.75px) rotate(45deg);
+  }
+
+  .burger.active span:last-child {
+    transform: translateY(-3.75px) rotate(-45deg);
+  }
+
+  body.dark-theme .nav {
+    background-color: #403f3d;
+  }
+}
+
+
+/* Slider animation */
+
+.coffee-slide {
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.coffee-slide.slide-changing {
+  opacity: 0;
+  transform: translateY(10px);
+}
