@@ -111,6 +111,9 @@ if (coffeeSlide && prevButton && nextButton) {
   let currentSlide = 0;
   let isAnimating = false;
 
+  const AUTO_SLIDE_DELAY = 5000;
+let autoSlideTimer;
+
 
   // =========================
   // UPDATE SLIDE
@@ -301,5 +304,53 @@ function handleSwipe() {
   }
 }
 
- updateSlide();
+ 
+// =========================
+// AUTO SLIDER
+// =========================
+
+function startAutoSlide() {
+  clearInterval(autoSlideTimer);
+
+  autoSlideTimer = setInterval(() => {
+    if (isAnimating) {
+      return;
+    }
+
+    const nextSlide =
+      (currentSlide + 1) % coffees.length;
+
+    changeSlide(nextSlide, 'next');
+  }, AUTO_SLIDE_DELAY);
+}
+
+startAutoSlide();
+// =========================
+// PAUSE ON HOVER
+// =========================
+
+coffeeSlide.addEventListener('mouseenter', () => {
+  clearInterval(autoSlideTimer);
+
+  sliderControls.forEach((control) => {
+    control.style.animationPlayState = 'paused';
+  });
+});
+
+coffeeSlide.addEventListener('mouseleave', () => {
+  sliderControls.forEach((control) => {
+    control.style.animationPlayState = 'running';
+  });
+
+  startAutoSlide();
+});
+
+coffeeSlide.addEventListener('mouseenter', () => {
+  clearInterval(autoSlideTimer);
+});
+
+coffeeSlide.addEventListener('mouseleave', () => {
+  startAutoSlide();
+});
+updateSlide();
 }
