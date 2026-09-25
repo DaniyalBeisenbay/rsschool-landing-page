@@ -354,3 +354,149 @@ coffeeSlide.addEventListener('mouseleave', () => {
 });
 updateSlide();
 }
+
+// =========================
+// MENU CATEGORIES
+// =========================
+
+const menuTabs = document.querySelectorAll('.menu-tab');
+const menuGrid = document.querySelector('.menu-grid');
+
+if (menuTabs.length > 0 && menuGrid) {
+  const coffeeHTML = menuGrid.innerHTML;
+
+  const menuData = {
+    tea: [
+      {
+        image: './assets/images/tea-1.png',
+        name: 'Moroccan',
+        description:
+          'Fragrant black tea with the addition of tangerine, cinnamon, honey, lemon and mint',
+        price: '$4.50',
+      },
+      {
+        image: './assets/images/tea-2.png',
+        name: 'Ginger',
+        description:
+          'Original black tea with fresh ginger, lemon and honey',
+        price: '$5.00',
+      },
+      {
+        image: './assets/images/tea-3.png',
+        name: 'Cranberry',
+        description:
+          'Invigorating black tea with cranberry and honey',
+        price: '$5.00',
+      },
+      {
+        image: './assets/images/tea-4.png',
+        name: 'Sea buckthorn',
+        description:
+          'Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon',
+        price: '$5.50',
+      },
+    ],
+
+    dessert: [
+      {
+        image: './assets/images/dessert-1.png',
+        name: 'Marble cheesecake',
+        description:
+          'Philadelphia cheese with lemon zest on a light sponge cake and red currant jam',
+        price: '$3.50',
+      },
+      {
+        image: './assets/images/dessert-2.png',
+        name: 'Red velvet',
+        description:
+          'Layer cake with cream cheese frosting',
+        price: '$4.00',
+      },
+      {
+        image: './assets/images/dessert-3.png',
+        name: 'Cheesecakes',
+        description:
+          'Soft cottage cheese pancakes with sour cream and fresh berries and sprinkled with powdered sugar',
+        price: '$4.50',
+      },
+      {
+        image: './assets/images/dessert-4.png',
+        name: 'Creme brulee',
+        description:
+          'Delicate creamy dessert in a caramel basket with wild berries',
+        price: '$4.00',
+      },
+      {
+        image: './assets/images/dessert-5.png',
+        name: 'Pancakes',
+        description:
+          'Tender pancakes with strawberry jam and fresh strawberries',
+        price: '$4.50',
+      },
+      {
+        image: './assets/images/dessert-6.png',
+        name: 'Honey cake',
+        description:
+          'Classic honey cake with delicate custard',
+        price: '$4.50',
+      },
+      {
+        image: './assets/images/dessert-7.png',
+        name: 'Chocolate cake',
+        description:
+          'Cake with hot chocolate filling and nuts with dried apricots',
+        price: '$5.50',
+      },
+      {
+        image: './assets/images/dessert-8.png',
+        name: 'Black forest',
+        description:
+          'A combination of thin sponge cake with cherry jam and light chocolate mousse',
+        price: '$6.50',
+      },
+    ],
+  };
+
+  function renderProducts(category) {
+    if (category === 'coffee') {
+      menuGrid.innerHTML = coffeeHTML;
+      return;
+    }
+
+    const products = menuData[category];
+
+    if (!products) return;
+
+    menuGrid.innerHTML = products
+      .map(
+        (product) => `
+          <article class="product-card">
+            <div class="product-image">
+              <img src="${product.image}" alt="${product.name}">
+            </div>
+
+            <div class="product-content">
+              <h2>${product.name}</h2>
+              <p>${product.description}</p>
+              <strong>${product.price}</strong>
+            </div>
+          </article>
+        `
+      )
+      .join('');
+  }
+
+  menuTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const category = tab.dataset.category;
+
+      menuTabs.forEach((item) => {
+        item.classList.remove('active');
+      });
+
+      tab.classList.add('active');
+
+      renderProducts(category);
+    });
+  });
+}
