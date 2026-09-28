@@ -363,133 +363,103 @@ const menuTabs = document.querySelectorAll('.menu-tab');
 const menuGrid = document.querySelector('.menu-grid');
 
 if (menuTabs.length > 0 && menuGrid) {
-  const coffeeHTML = menuGrid.innerHTML;
 
-  const menuData = {
-    tea: [
-      {
-        image: './assets/images/tea-1.png',
-        name: 'Moroccan',
-        description:
-          'Fragrant black tea with the addition of tangerine, cinnamon, honey, lemon and mint',
-        price: '$4.50',
-      },
-      {
-        image: './assets/images/tea-2.png',
-        name: 'Ginger',
-        description:
-          'Original black tea with fresh ginger, lemon and honey',
-        price: '$5.00',
-      },
-      {
-        image: './assets/images/tea-3.png',
-        name: 'Cranberry',
-        description:
-          'Invigorating black tea with cranberry and honey',
-        price: '$5.00',
-      },
-      {
-        image: './assets/images/tea-4.png',
-        name: 'Sea buckthorn',
-        description:
-          'Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon',
-        price: '$5.50',
-      },
-    ],
-
-    dessert: [
-      {
-        image: './assets/images/dessert-1.png',
-        name: 'Marble cheesecake',
-        description:
-          'Philadelphia cheese with lemon zest on a light sponge cake and red currant jam',
-        price: '$3.50',
-      },
-      {
-        image: './assets/images/dessert-2.png',
-        name: 'Red velvet',
-        description:
-          'Layer cake with cream cheese frosting',
-        price: '$4.00',
-      },
-      {
-        image: './assets/images/dessert-3.png',
-        name: 'Cheesecakes',
-        description:
-          'Soft cottage cheese pancakes with sour cream and fresh berries and sprinkled with powdered sugar',
-        price: '$4.50',
-      },
-      {
-        image: './assets/images/dessert-4.png',
-        name: 'Creme brulee',
-        description:
-          'Delicate creamy dessert in a caramel basket with wild berries',
-        price: '$4.00',
-      },
-      {
-        image: './assets/images/dessert-5.png',
-        name: 'Pancakes',
-        description:
-          'Tender pancakes with strawberry jam and fresh strawberries',
-        price: '$4.50',
-      },
-      {
-        image: './assets/images/dessert-6.png',
-        name: 'Honey cake',
-        description:
-          'Classic honey cake with delicate custard',
-        price: '$4.50',
-      },
-      {
-        image: './assets/images/dessert-7.png',
-        name: 'Chocolate cake',
-        description:
-          'Cake with hot chocolate filling and nuts with dried apricots',
-        price: '$5.50',
-      },
-      {
-        image: './assets/images/dessert-8.png',
-        name: 'Black forest',
-        description:
-          'A combination of thin sponge cake with cherry jam and light chocolate mousse',
-        price: '$6.50',
-      },
-    ],
-  };
+  
 
   function renderProducts(category) {
     if (category === 'coffee') {
-      menuGrid.innerHTML = coffeeHTML;
-      return;
-    }
+  const coffeeProducts = products.filter(
+    (product) => product.category === 'coffee'
+  );
 
-    const products = menuData[category];
+  menuGrid.innerHTML = coffeeProducts
+    .map(
+      (product) => `
+        <article class="product-card">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
 
-    if (!products) return;
+          <div class="product-content">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <strong>$${product.price.toFixed(2)}</strong>
+          </div>
+        </article>
+      `
+    )
+    .join('');
 
-    menuGrid.innerHTML = products
-      .map(
-        (product) => `
-          <article class="product-card">
-            <div class="product-image">
-              <img src="${product.image}" alt="${product.name}">
-            </div>
+  return;
+}
+if (category === 'tea') {
+  const teaProducts = products.filter(
+    (product) => product.category === 'tea'
+  );
 
-            <div class="product-content">
-              <h2>${product.name}</h2>
-              <p>${product.description}</p>
-              <strong>${product.price}</strong>
-            </div>
-          </article>
-        `
-      )
-      .join('');
+  menuGrid.innerHTML = teaProducts
+    .map(
+      (product) => `
+        <article class="product-card">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+
+          <div class="product-content">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <strong>$${product.price.toFixed(2)}</strong>
+          </div>
+        </article>
+      `
+    )
+    .join('');
+
+  return;
+}
+
+if (category === 'dessert') {
+  const dessertProducts = products.filter(
+    (product) => product.category === 'dessert'
+  );
+
+  menuGrid.innerHTML = dessertProducts
+    .map(
+      (product) => `
+        <article class="product-card">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+
+          <div class="product-content">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <strong>$${product.price.toFixed(2)}</strong>
+          </div>
+        </article>
+      `
+    )
+    .join('');
+
+  return;
+}
   }
+    
+  renderProducts('coffee');
 
   menuTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const category = tab.dataset.category;
 
+      menuGrid.classList.remove('show-all');
+
+      if (refreshButton) {
+        if (category === 'tea') {
+          refreshButton.style.setProperty('display', 'none', 'important');
+        } else {
+          refreshButton.style.removeProperty('display');
+        }
+}
       menuTabs.forEach((item) => {
         item.classList.remove('active');
       });
@@ -497,6 +467,200 @@ if (menuTabs.length > 0 && menuGrid) {
       tab.classList.add('active');
 
       renderProducts(category);
+      
     });
   });
 }
+
+// SHOW MORE PRODUCTS
+
+const refreshButton = document.querySelector('.refresh-button');
+
+if (refreshButton && menuGrid) {
+  refreshButton.addEventListener('click', () => {
+    menuGrid.classList.add('show-all');
+    refreshButton.style.display = 'none';
+  });
+}
+// =========================
+// PRODUCT MODAL
+// =========================
+
+const productModal = document.querySelector('#product-modal');
+const modalClose = document.querySelector('.modal-close');
+const modalCloseButton = document.querySelector('.modal-close-button');
+
+if (productModal && modalClose) {
+
+  document.addEventListener('click', (event) => {
+    const card = event.target.closest('.product-card');
+
+    if (!card) return;
+    const activeCategory =
+  document.querySelector('.menu-tab.active')?.dataset.category;
+  productModal.classList.remove(
+  'coffee-modal',
+  'tea-modal',
+  'dessert-modal'
+);
+
+productModal.classList.add(`${activeCategory}-modal`);
+  const modalInfoText = document.querySelector('.modal-info-text');
+
+if (activeCategory === 'coffee') {
+  modalInfoText.innerHTML =
+    'The cost is not final. Download our mobile app to see the final price and place your order. ' +
+    'Earn loyalty points and enjoy your favorite coffee with up to 20% discount.';
+} else {
+  modalInfoText.innerHTML =
+    'The total price depends on the selected size and additives.<br>' +
+    'After adding the item, you can review it in My order.';
+}
+  const sizeOptionsText = document.querySelectorAll('.size-option');
+const additiveOptionsText = document.querySelectorAll('.additive-option');
+
+if (activeCategory === 'dessert') {
+  sizeOptionsText[0].lastChild.textContent = ' 50 g';
+  sizeOptionsText[1].lastChild.textContent = ' 100 g';
+  sizeOptionsText[2].lastChild.textContent = ' 200 g';
+
+  additiveOptionsText[0].lastChild.textContent = ' Berries';
+  additiveOptionsText[1].lastChild.textContent = ' Nuts';
+  additiveOptionsText[2].lastChild.textContent = ' Jam';
+}
+
+if (activeCategory === 'coffee') {
+  sizeOptionsText[0].lastChild.textContent = ' 200 ml';
+  sizeOptionsText[1].lastChild.textContent = ' 300 ml';
+  sizeOptionsText[2].lastChild.textContent = ' 400 ml';
+
+  additiveOptionsText[0].lastChild.textContent = ' Sugar';
+  additiveOptionsText[1].lastChild.textContent = ' Cinnamon';
+  additiveOptionsText[2].lastChild.textContent = ' Syrup';
+}
+
+if (activeCategory === 'tea') {
+  sizeOptionsText[0].lastChild.textContent = ' 200 ml';
+  sizeOptionsText[1].lastChild.textContent = ' 300 ml';
+  sizeOptionsText[2].lastChild.textContent = ' 400 ml';
+
+  additiveOptionsText[0].lastChild.textContent = ' Sugar';
+  additiveOptionsText[1].lastChild.textContent = ' Lemon';
+  additiveOptionsText[2].lastChild.textContent = ' Syrup';
+}
+
+const secondAdditive =
+  document.querySelectorAll('.additive-option')[1];
+
+if (secondAdditive) {
+  if (activeCategory === 'tea') {
+    secondAdditive.childNodes[
+      secondAdditive.childNodes.length - 1
+    ].textContent = ' Lemon';
+  } else {
+    secondAdditive.childNodes[
+      secondAdditive.childNodes.length - 1
+    ].textContent = ' Cinnamon';
+  }
+}
+
+    const image = card.querySelector('img');
+    const title = card.querySelector('h2');
+    const description = card.querySelector('p');
+    const price = card.querySelector('strong');
+    basePrice = parseFloat(price.textContent.replace('$', ''));
+    sizeOptions.forEach((item, index) => {
+  item.classList.toggle('active', index === 0);
+});
+
+additiveOptions.forEach((item) => {
+  item.classList.remove('active');
+});
+
+    productModal.querySelector('.modal-image img').src = image.src;
+    productModal.querySelector('.modal-image img').alt = title.textContent;
+    productModal.querySelector('.modal-title').textContent = title.textContent;
+    productModal.querySelector('.modal-description').textContent =
+      description.textContent;
+    productModal.querySelector('.modal-price').textContent =
+      price.textContent;
+
+    productModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeModal() {
+    productModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalCloseButton.addEventListener('click', closeModal);
+
+  productModal.addEventListener('click', (event) => {
+    if (event.target === productModal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+}
+// MODAL SIZE OPTIONS
+let basePrice = 0;
+const sizeOptions = document.querySelectorAll('.size-option');
+
+sizeOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    sizeOptions.forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    option.classList.add('active');
+    const sizePrice = parseFloat(option.dataset.price);
+
+let additivesPrice = 0;
+
+additiveOptions.forEach((item) => {
+  if (item.classList.contains('active')) {
+    additivesPrice += parseFloat(item.dataset.price);
+  }
+});
+
+const totalPrice = basePrice + sizePrice + additivesPrice;
+
+productModal.querySelector('.modal-price').textContent =
+  `$${totalPrice.toFixed(2)}`;
+  });
+});
+// MODAL ADDITIVES
+
+const additiveOptions = document.querySelectorAll('.additive-option');
+
+additiveOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    option.classList.toggle('active');
+
+    const activeSize = document.querySelector('.size-option.active');
+
+    const sizePrice = activeSize
+      ? parseFloat(activeSize.dataset.price)
+      : 0;
+
+    let additivesPrice = 0;
+
+    additiveOptions.forEach((item) => {
+      if (item.classList.contains('active')) {
+        additivesPrice += parseFloat(item.dataset.price);
+      }
+    });
+
+    const totalPrice = basePrice + sizePrice + additivesPrice;
+
+    productModal.querySelector('.modal-price').textContent =
+      `$${totalPrice.toFixed(2)}`;
+  });
+});

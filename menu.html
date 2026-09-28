@@ -84,104 +84,17 @@
 
       <div class="menu-grid">
 
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-1.jpg" alt="Irish coffee">
-          </div>
-
-          <div class="product-content">
-            <h2>Irish coffee</h2>
-            <p>Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
-            <strong>$7.00</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-2.jpg" alt="Kahlua coffee">
-          </div>
-
-          <div class="product-content">
-            <h2>Kahlua coffee</h2>
-            <p>Classic coffee with milk and Kahlua liqueur under a cap of frothed milk</p>
-            <strong>$7.00</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-3.jpg" alt="Honey raf">
-          </div>
-
-          <div class="product-content">
-            <h2>Honey raf</h2>
-            <p>Espresso with frothed milk, cream and aromatic honey</p>
-            <strong>$5.50</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-4.jpg" alt="Ice cappuccino">
-          </div>
-
-          <div class="product-content">
-            <h2>Ice cappuccino</h2>
-            <p>Cappuccino with soft thick foam in summer version with ice</p>
-            <strong>$5.00</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-5.jpg" alt="Espresso">
-          </div>
-
-          <div class="product-content">
-            <h2>Espresso</h2>
-            <p>Classic black coffee</p>
-            <strong>$4.50</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-6.jpg" alt="Latte">
-          </div>
-
-          <div class="product-content">
-            <h2>Latte</h2>
-            <p>Espresso coffee with the addition of steamed milk and dense milk foam</p>
-            <strong>$5.50</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-7.jpg" alt="Latte macchiato">
-          </div>
-
-          <div class="product-content">
-            <h2>Latte macchiato</h2>
-            <p>Espresso with frothed milk and chocolate</p>
-            <strong>$5.50</strong>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img src="./assets/images/coffee-8.jpg" alt="Coffee with cognac">
-          </div>
-
-          <div class="product-content">
-            <h2>Coffee with cognac</h2>
-            <p>Fragrant black coffee with cognac and whipped cream</p>
-            <strong>$6.50</strong>
-          </div>
-        </article>
+        
 
       </div>
 
+        <button
+        class="refresh-button"
+        type="button"
+        aria-label="Show more products"
+      >
+        ↻
+      </button>
 
     </div>
 
@@ -189,6 +102,103 @@
 
   </section>
 </main>
+  <!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="product-modal">
+
+  <div class="product-modal">
+
+    <button
+      class="modal-close"
+      type="button"
+      aria-label="Close modal"
+    >
+      
+    </button>
+
+    <div class="modal-image">
+      <img src="./assets/images/coffee-1.jpg" alt="Product">
+    </div>
+
+    <div class="modal-content">
+
+      <h2 class="modal-title">Irish coffee</h2>
+
+      <p class="modal-description">
+        Fragrant black coffee with Jameson Irish whiskey and whipped milk
+      </p>
+
+      <div class="modal-size">
+  <p class="modal-option-title">Size</p>
+
+  <div class="size-options">
+    <button class="size-option active" type="button" data-price="0">
+      <span>S</span>
+      200 ml
+    </button>
+
+    <button class="size-option" type="button" data-price="0.50">
+      <span>M</span>
+      300 ml
+    </button>
+
+    <button class="size-option" type="button" data-price="1.00">
+      <span>L</span>
+      400 ml
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal-additives">
+  <p class="modal-option-title">Additives</p>
+
+  <div class="additive-options">
+    <button class="additive-option" type="button" data-price="0.50">
+      <span>1</span>
+      Sugar
+    </button>
+
+    <button class="additive-option" type="button" data-price="0.50">
+      <span>2</span>
+      Cinnamon
+    </button>
+
+    <button class="additive-option" type="button" data-price="0.50">
+      <span>3</span>
+      Syrup
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
+      <div class="modal-total">
+  <strong>Total:</strong>
+  <strong class="modal-price">$7.00</strong>
+</div>
+
+<div class="modal-info">
+  <span>ⓘ</span>
+    <p class="modal-info-text"></p>
+</div>
+
+<button class="modal-close-button" type="button">
+  Close
+</button>
+
+    </div>
+
+  </div>
+
+</div>
 <footer class="footer menu-footer" id="contacts">
   <div class="container">
 
@@ -241,6 +251,8 @@
 
   </div>
 </footer>
+<script src="./js/products.js"></script>
 <script src="./js/script.js"></script>
 </body>
 </html>
+
