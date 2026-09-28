@@ -1,11 +1,42 @@
 const products = [
   {
-    name: 'Irish coffee',
-    description: 'Fragrant black coffee with Jameson Irish whiskey and whipped milk',
-    price: 7.00,
-    category: 'coffee',
-    image: './assets/images/coffee-1.jpg',
+  name: 'Irish coffee',
+  description:
+    'Fragrant black coffee with Jameson Irish whiskey and whipped milk',
+  price: 7.00,
+  category: 'coffee',
+  image: './assets/images/coffee-1.jpg',
+
+  sizes: {
+    s: {
+      size: '200 ml',
+      addPrice: 0,
+    },
+    m: {
+      size: '300 ml',
+      addPrice: 0.50,
+    },
+    l: {
+      size: '400 ml',
+      addPrice: 1.00,
+    },
   },
+
+  additives: [
+    {
+      name: 'Sugar',
+      addPrice: 0.50,
+    },
+    {
+      name: 'Cinnamon',
+      addPrice: 0.50,
+    },
+    {
+      name: 'Syrup',
+      addPrice: 0.50,
+    },
+  ],
+},
   {
     name: 'Kahlua coffee',
     description: 'Classic coffee with milk and Kahlua liqueur under a cap of frothed milk',

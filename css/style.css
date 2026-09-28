@@ -97,8 +97,14 @@ button {
 }
 
 .menu-link {
-  font-size: 16px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 
@@ -1686,16 +1692,50 @@ body.dark-theme .product-modal {
 /* Mobile */
 
 @media (max-width: 600px) {
+  .modal-overlay {
+    padding: 19px;
+  }
+
+  .product-modal {
+    width: 100%;
+    max-width: 342px;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 40px;
+  }
+
   .modal-image {
     display: none;
   }
 
-  .product-modal {
-    max-width: 342px;
+  .modal-content {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
   }
 
-  .modal-content {
-    padding: 16px;
+  .size-options,
+  .additive-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .size-option,
+  .additive-option {
+    white-space: nowrap;
+  }
+
+  .modal-total {
+    width: 100%;
+  }
+
+  .modal-info {
+    width: 100%;
+  }
+
+  .modal-close-button {
+    width: 100%;
   }
 }
 /* MODAL SIZE */
@@ -1939,4 +1979,99 @@ body.dark-theme .modal-close-button {
     gap: 6px;
     white-space: nowrap;
   }
+}
+@media (max-width: 600px) {
+  .modal-overlay {
+    padding: 19px;
+  }
+
+  .product-modal {
+    width: 342px;
+    max-width: calc(100vw - 38px);
+    padding: 16px;
+    gap: 0;
+    box-sizing: border-box;
+  }
+
+  .modal-image {
+    display: none;
+  }
+
+  .modal-content {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .size-options,
+  .additive-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .size-option,
+  .additive-option {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}.modal-title {
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.modal-description {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modal-option-title {
+  font-size: 16px;
+}
+
+.size-option,
+.additive-option {
+  font-size: 16px;
+}
+
+.modal-total,
+.modal-price {
+  font-size: 24px;
+}
+
+.modal-info {
+  font-size: 10px;
+}
+
+.modal-close-button {
+  font-size: 16px;
+}
+
+
+.menu-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: auto;
+}
+
+.menu-icon-box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+}
+.store-icon-dark {
+  display: none;
+}
+
+body.dark-theme .store-icon-light {
+  display: none;
+}
+
+body.dark-theme .store-icon-dark {
+  display: block;
 }

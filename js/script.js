@@ -549,20 +549,7 @@ if (activeCategory === 'tea') {
   additiveOptionsText[2].lastChild.textContent = ' Syrup';
 }
 
-const secondAdditive =
-  document.querySelectorAll('.additive-option')[1];
 
-if (secondAdditive) {
-  if (activeCategory === 'tea') {
-    secondAdditive.childNodes[
-      secondAdditive.childNodes.length - 1
-    ].textContent = ' Lemon';
-  } else {
-    secondAdditive.childNodes[
-      secondAdditive.childNodes.length - 1
-    ].textContent = ' Cinnamon';
-  }
-}
 
     const image = card.querySelector('img');
     const title = card.querySelector('h2');
